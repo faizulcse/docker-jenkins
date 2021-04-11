@@ -1,5 +1,9 @@
 node('master') {
-    steps("Get system env variable") {
+    stage("Checkout Repository") {
+        deleteDir()
+        checkout scm
+    }
+    stage("Get system env variable") {
         println("${env.JOB_BASE_NAME}")
         println("${env.WORKSPACE}")
         println("${env.NODE_COUNT}")
