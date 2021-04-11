@@ -1,3 +1,5 @@
+import com.rsg.jenkins.util.Tags
+
 node('master') {
     stage("Checkout Repository") {
         deleteDir()
@@ -7,6 +9,11 @@ node('master') {
 //    stage("Generate build_env file"){
 //        sh "env > ${env.WORKSPACE}/build_env.log"
 //    }
+    println("${env.CUCUMBER_TAGS}")
+    def tags = new Tags();
+    tags.tagsToRun(env.CUCUMBER_TAGS)
+    def tagCommand = tags.toString()
+    println("${tagCommand}")
 
     stage("Get system env variable") {
         println("JOB_BASE_NAME: ${env.JOB_BASE_NAME}")
