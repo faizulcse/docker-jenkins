@@ -1,4 +1,3 @@
-def call(Closure body){
-    sh "echo Hello World"
-    sh "echo ==> ${body}"
+def call(Map config = [:]){
+    sh "echo Hello World ${config.name}, Today is ${config.dayOfWeek}"
 }
